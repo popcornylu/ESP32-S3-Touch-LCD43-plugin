@@ -1,0 +1,5 @@
+{
+  "name": "esp32-s3-touch-lcd43",
+  "description": "Board reference and dev tools for Waveshare ESP32-S3-Touch-LCD-4.3B",
+  "author": { "name": "popcorny" }
+}
