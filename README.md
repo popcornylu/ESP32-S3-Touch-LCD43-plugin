@@ -25,10 +25,23 @@ Quick PlatformIO build commands:
 
 ## Installation
 
-Use the `--plugin-dir` flag when launching Claude Code:
+Register this repository as a Claude Code Plugin marketplace by running the following command in Claude Code:
 
-```bash
-claude --plugin-dir path/to/ESP32-S3-Touch-LCD43-plugin
+```
+/plugin marketplace add popcornylu/ESP32-S3-Touch-LCD43-plugin
+```
+
+Then install the plugin:
+
+1. Select `Browse and install plugins`
+2. Select `esp32-s3-touch-lcd43`
+3. Select `esp32-s3-touch-lcd43`
+4. Select `Install now`
+
+Alternatively, install directly via:
+
+```
+/plugin install esp32-s3-touch-lcd43@esp32-s3-touch-lcd43
 ```
 
 ## Hardware Overview

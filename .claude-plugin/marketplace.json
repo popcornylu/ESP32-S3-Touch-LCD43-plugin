@@ -1,0 +1,16 @@
+{
+  "name": "esp32-s3-touch-lcd43",
+  "owner": {
+    "name": "popcorny"
+  },
+  "metadata": {
+    "description": "Claude Code plugin for Waveshare ESP32-S3-Touch-LCD-4.3B development"
+  },
+  "plugins": [
+    {
+      "name": "esp32-s3-touch-lcd43",
+      "source": ".",
+      "description": "Board reference and dev tools for Waveshare ESP32-S3-Touch-LCD-4.3B"
+    }
+  ]
+}
