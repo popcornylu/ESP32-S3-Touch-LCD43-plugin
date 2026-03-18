@@ -9,7 +9,7 @@
   "plugins": [
     {
       "name": "esp32-s3-touch-lcd43",
-      "source": ".",
+      "source": "./",
       "description": "Board reference and dev tools for Waveshare ESP32-S3-Touch-LCD-4.3B"
     }
   ]
