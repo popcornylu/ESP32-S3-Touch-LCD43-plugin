@@ -1,9 +1,13 @@
 # PlatformIO Project Setup — Waveshare ESP32-S3-Touch-LCD-4.3B
 
+> **Toolchain note**: This setup uses **LVGL v8.4** and **Arduino core 3.1.1**. LVGL v9 has a completely different API (`lv_disp_drv_t` is removed) and is **not** compatible with the skeleton below. For Arduino IDE or ESP-IDF workflows, see the [Waveshare wiki](https://www.waveshare.com/wiki/ESP32-S3-Touch-LCD-4.3B).
+
 ## platformio.ini
 
 ```ini
 [env:waveshare-lcd-43b]
+; Tested with pioarduino platform 53.03.11 and Arduino core 3.1.1.
+; Update URLs when newer versions are confirmed to work.
 platform = https://github.com/pioarduino/platform-espressif32/releases/download/53.03.11/platform-espressif32.zip
 platform_packages =
     platformio/framework-arduinoespressif32@https://github.com/espressif/arduino-esp32.git#3.1.1
@@ -33,7 +37,7 @@ build_flags =
     -I src
 
 lib_deps =
-    https://github.com/esp-arduino-libs/ESP32_Display_Panel.git
+    https://github.com/esp-arduino-libs/ESP32_Display_Panel.git#v0.2.1
     https://github.com/esp-arduino-libs/ESP32_IO_Expander.git#v1.1.0
     https://github.com/esp-arduino-libs/esp-lib-utils.git#v0.2.0
     https://github.com/lvgl/lvgl.git#v8.4.0
@@ -57,7 +61,7 @@ lib_deps =
 
 | Library | Version | Purpose |
 |---|---|---|
-| ESP32_Display_Panel | latest | Display driver with built-in Waveshare board support |
+| ESP32_Display_Panel | v0.2.1 | Display driver with built-in Waveshare board support |
 | ESP32_IO_Expander | v1.1.0 | CH422G IO expander driver |
 | esp-lib-utils | v0.2.0 | Utility library required by display panel |
 | LVGL | v8.4.0 | Graphics library |
@@ -121,22 +125,22 @@ Place this in `src/lv_conf.h`:
 #define LV_USE_TEXTAREA   1
 #define LV_USE_TABLE      1
 
-/* Extra widgets — enable as needed */
+/* Extra widgets — commonly needed ones enabled, disable to save flash */
 #define LV_USE_ANIMIMG    0
 #define LV_USE_CALENDAR   0
-#define LV_USE_CHART      0
+#define LV_USE_CHART      1  /* Data visualization */
 #define LV_USE_COLORWHEEL 0
 #define LV_USE_IMGBTN     0
-#define LV_USE_KEYBOARD   0
+#define LV_USE_KEYBOARD   1  /* Required for on-screen keyboard with textarea */
 #define LV_USE_LED        0
-#define LV_USE_LIST       0
+#define LV_USE_LIST       1  /* Scrollable lists */
 #define LV_USE_MENU       0
 #define LV_USE_METER      0
-#define LV_USE_MSGBOX     0
+#define LV_USE_MSGBOX     1  /* Dialog boxes / alerts */
 #define LV_USE_SPAN       0
 #define LV_USE_SPINBOX    0
-#define LV_USE_SPINNER    0
-#define LV_USE_TABVIEW    0
+#define LV_USE_SPINNER    1  /* Loading indicators */
+#define LV_USE_TABVIEW    1  /* Tabbed views */
 #define LV_USE_TILEVIEW   0
 #define LV_USE_WIN        0
 

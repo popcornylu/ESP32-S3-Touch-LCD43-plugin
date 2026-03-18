@@ -4,6 +4,7 @@ description: Build, upload, monitor, or clean the PlatformIO ESP32 project
 user-invoked: true
 allowed-tools:
   - Bash
+  - Read
 ---
 
 # /build — PlatformIO Build Commands
@@ -28,7 +29,7 @@ Run PlatformIO commands for the ESP32 project. Activate the Python venv first, t
    uv venv && source .venv/bin/activate && uv pip install platformio
    ```
 
-2. Based on the argument (or lack thereof), run:
+2. Parse the user's argument from the `/build` invocation. The text after `/build` is the subcommand. Based on the subcommand (or lack thereof), run:
    - **(no argument)**: `pio run`
    - **upload**: `pio run --target upload`
    - **monitor**: `pio device monitor`

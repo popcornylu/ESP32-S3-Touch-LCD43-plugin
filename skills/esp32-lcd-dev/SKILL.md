@@ -11,6 +11,10 @@ triggers:
   - ST7262
   - GT911
   - CH422G
+  - ESP32 touch display
+  - 4.3 inch LCD ESP32
+  - RGB LCD ESP32-S3
+  - ESP32_Display_Panel
 ---
 
 # Waveshare ESP32-S3-Touch-LCD-4.3B — Board Reference
@@ -44,3 +48,4 @@ For detailed information, read these reference files:
 - Touch and IO expander share the same I2C bus (GPIO8/GPIO9)
 - Always use `BOARD_WAVESHARE_ESP32_S3_TOUCH_LCD_4_3_B` build flag — it auto-configures the ESP32_Display_Panel library
 - LVGL must run on a dedicated FreeRTOS task with a recursive mutex for thread safety
+- This plugin targets **PlatformIO with LVGL v8.4**. LVGL v9 has a completely different API (no `lv_disp_drv_t`) and is not covered here. For ESP-IDF or Arduino IDE setups, see the [Waveshare wiki](https://www.waveshare.com/wiki/ESP32-S3-Touch-LCD-4.3B)

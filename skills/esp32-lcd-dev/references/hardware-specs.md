@@ -96,3 +96,16 @@ The ESP32_Display_Panel library handles initialization automatically when `BOARD
 - Large buffers (display frame buffers, image data) should use PSRAM via `heap_caps_malloc(size, MALLOC_CAP_SPIRAM)`
 - LVGL draw buffers work best in internal RAM for DMA: `heap_caps_calloc(1, size, MALLOC_CAP_INTERNAL)`
 - The recommended LVGL buffer size is `800 * 20 * sizeof(lv_color_t)` (one 20-line strip)
+
+## Troubleshooting
+
+| Symptom | Likely Cause | Fix |
+|---|---|---|
+| Blank screen (no backlight) | CH422G not initialized, or backlight pin not set | Ensure `BOARD_WAVESHARE_ESP32_S3_TOUCH_LCD_4_3_B` build flag is defined — it auto-enables backlight via IO expander pin 2 |
+| Screen white / garbled | Wrong LCD timing or missing bounce buffer | Verify PCLK = 16 MHz and bounce buffer = 8000 in board config; check that `LV_COLOR_16_SWAP=0` |
+| Touch not responding | GT911 at wrong I2C address | The board define handles address selection automatically; if using manual init, ensure INT pin is LOW during reset for address 0x5D |
+| Upload fails / no USB device | Board not in download mode | Hold the **BOOT** button while pressing **RESET**, then release BOOT — the board enters download mode. USB CDC is available after successful flash |
+| Serial monitor shows nothing | USB CDC not enabled | Confirm `ARDUINO_USB_MODE=1` and `ARDUINO_USB_CDC_ON_BOOT=1` build flags are set |
+| LVGL crashes / corrupt display | Thread-safety violation | All LVGL API calls outside the LVGL task must be wrapped with `xSemaphoreTakeRecursive(lvgl_mux, ...)` / `xSemaphoreGiveRecursive(lvgl_mux)` |
+| `heap_caps_calloc` returns NULL | Not enough internal RAM | Reduce LVGL buffer height (e.g., `800 * 10` instead of `800 * 20`), or move non-DMA buffers to PSRAM |
+| `drawBitmap` shows wrong region | Using coordinate API instead of size API | The signature is `drawBitmap(x, y, width, height, data)` — the 3rd/4th params are **width and height**, not x2/y2 |
