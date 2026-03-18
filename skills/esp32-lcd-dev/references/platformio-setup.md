@@ -37,7 +37,7 @@ build_flags =
     -I src
 
 lib_deps =
-    https://github.com/esp-arduino-libs/ESP32_Display_Panel.git#v0.2.1
+    https://github.com/esp-arduino-libs/ESP32_Display_Panel.git
     https://github.com/esp-arduino-libs/ESP32_IO_Expander.git#v1.1.0
     https://github.com/esp-arduino-libs/esp-lib-utils.git#v0.2.0
     https://github.com/lvgl/lvgl.git#v8.4.0
@@ -61,7 +61,7 @@ lib_deps =
 
 | Library | Version | Purpose |
 |---|---|---|
-| ESP32_Display_Panel | v0.2.1 | Display driver with built-in Waveshare board support |
+| ESP32_Display_Panel | latest | Display driver with built-in Waveshare board support |
 | ESP32_IO_Expander | v1.1.0 | CH422G IO expander driver |
 | esp-lib-utils | v0.2.0 | Utility library required by display panel |
 | LVGL | v8.4.0 | Graphics library |
